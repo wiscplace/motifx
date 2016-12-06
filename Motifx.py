@@ -13,13 +13,17 @@ Purpose: Automate submitting jobs to Motif-x website. http://motif-x.med.harvard
          mapped back to identify the gene.  If you don't care just use the default
          otherwise use -u to upload the latest SGD orf_trans fasta file.  
 
-Input : One or more peptide excel files, column order is unimportant but column name must match, 
-        each file looks like:
+Input : One or more peptide excel files, listed in a text file, column order is 
+        unimportant but column name must match, each file looks like
 
 Ppep    Group    Localized_Sequence    Motif_X_Input_Peptide
 YGL076C_T8_S11    Induced    AAEKILtPEsQLKK    AAEKILT*PES*QLKK
 YNR047W_T428    Induced    AASEPNGLQLASATSPtSSSAR    AASEPNGLQLASATSPT*SSSAR
 
+Run using an alternate proteome file: 
+    
+    Motifx.py -f inputfiles -u orf_trans_all.20150113.fasta
+    
 Output : A log file, results file, directories for each central character containing
          logo images and motif results page in a log file.
 
