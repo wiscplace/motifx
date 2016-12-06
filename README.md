@@ -26,6 +26,10 @@ Motifx.py
 
     Output : Table with amino acid sequence, motif and png logo images plus log files for each input Excel file.
 
+
+    NOTE: Motifx.py automatically calls exactFastaMatch.py, so it does not need to be 
+          run separately.
+
     To see Python Docs and get a better explaination of the program:
 
     Open python console and enter
