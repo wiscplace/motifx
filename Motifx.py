@@ -23,6 +23,10 @@ YNR047W_T428    Induced    AASEPNGLQLASATSPtSSSAR    AASEPNGLQLASATSPT*SSSAR
 Run using an alternate proteome file: 
     
     Motifx.py -f inputfiles -u orf_trans_all.20150113.fasta
+
+    orf_trans_all.20150113.fasta -- more up-to-date SGD orf fasta file
+
+    located here: /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta  
     
 Output : A log file, results file, directories for each central character containing
          logo images and motif results page in a log file.
@@ -312,6 +316,7 @@ def main():
         print("\t-o Minimum number of times each of your extracted motifs to occur in the data set (10)")
         print("\t-s P-value threshold for the binomial probability (.000001)")
         print("\t-u upload a newer version of SGD proteome (orf_trans.fasta) than used by motifx.")
+        print("\t newer orf fasta located: /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta")
         print("\t   If you choose to use the default from Motifx, then the follow on motifx matching")
         print("\t   may miss a few motifx, as Motifx uses an older version of SGD proteome.")
         print("\t-w Number of total characters in motif, (13)")
