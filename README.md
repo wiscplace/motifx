@@ -39,6 +39,11 @@ Motifx.py
     help(Motifx)
 
 ********************************************************************************
+Alternate ORF fasta file from SGD R64-2-1 is located:    
+
+    /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta  
+    
+********************************************************************************
 exactFastaMatch.py
 
     Purpose: Exact match a short sequence to a gene in fasta file  
