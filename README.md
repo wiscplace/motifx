@@ -34,7 +34,7 @@ Motifx.py
 
     Open python console and enter
     import sys
-    sys.path.append('/full/path/to/script')
+    sys.path.append('/home/GLBRCORG/mplace/scripts/motifx')
     import Motifx
     help(Motifx)
 
