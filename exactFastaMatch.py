@@ -1,4 +1,4 @@
-#!/homei/GLBRCORG/mplace/anaconda3/bin/python
+#!/home/GLBRCORG/mplace/anaconda3/bin/python
 """
 @Program: exactPeptideMatch.py
 
