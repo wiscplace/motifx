@@ -9,7 +9,15 @@ Purpose: Automate submitting jobs to Motif-x website. http://motif-x.med.harvard
          NOTE: The default SGD proteome file used by motifx is different (older) 
          than the current SGD file.  This results in a few motifs which cannot be 
          mapped back to identify the gene.  As a work around the input peptides
-         are pre-aligned to the R64-2-1 version of SGD proteome (current as of 12/9/2016). 
+         are pre-aligned to the R64-2-1 version of SGD proteome (current as of 12/9/2016).
+         
+         Duplicate peptides are discarded to avoid biasing the motifx.
+         for example:
+             YOR051C_S33 
+             YOR051C_S33_T34
+             
+             will produce 3 peptides, 2 of which are identical, one of these
+             is discarded.
 
          located here: /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta  
          
@@ -322,7 +330,6 @@ def main():
         print("\t-o Minimum number of times each of your extracted motifs to occur in the data set (10)")
         print("\t-s P-value threshold for the binomial probability (.000001)")
         print("\t-u upload your own version of SGD proteome (orf_trans.fasta).")
-        print("\t newer orf fasta located: /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta")
         print("\t-w Number of total characters in motif, (13)")
         print("\n  Output :")
         print("\tA final text table named after the input file containing all the motifs matched to a gene.")

@@ -71,13 +71,13 @@ class MotifxPreAlign(object):
 
     def __init__(self, fasta, pep, window):
         """ Contruct exactFastaMatch object """
-        self.window    = window                       # set width of peptide string
-        self.wing      = int((window -1)/2)           # number of amino acids on either side of phospho site
-        self.genes     = set()                        # gene name set, for filtering orf fasta
-        self.pepInfo   = self.getPepInfo(pep)         # get peptide information
-        self.orfRec    = self.filterFasta(fasta)      # make a reduced list of seqIO objects (fasta sequences)
-        # list of genes to remove from final results, because there is no match or its been excluded
-        self.genesToRemove = []                       
+        self.window        = window                       # set width of peptide string
+        self.wing          = int((window -1)/2)           # number of amino acids on either side of phospho site
+        self.genes         = set()                        # gene name set, for filtering orf fasta
+        self.pepInfo       = self.getPepInfo(pep)         # get peptide information
+        self.orfRec        = self.filterFasta(fasta)      # make a reduced list of seqIO objects (fasta sequences)
+        self.genesToRemove = []                           # list of genes to remove from final results, i.e. no match or its been excluded
+        self.duplicatePeps = set()                        # used to find duplicate peptides                
 
     def getPepInfo(self, pep):
         """ parse and return a dict of peptide information & sequence """
@@ -150,7 +150,20 @@ class MotifxPreAlign(object):
                         phosPepPos = start + i - count
                         count += 1
                         extendPep = subject.seq[(phosPepPos - self.wing):(phosPepPos +1 + self.wing)]
-                        info['extended'].append(extendPep)  
+                        # check for duplicate peptides from the same gene and remove duplicate, allow one to pass
+                        # for example:  YOR051C_S33 and YOR051C_S33_T34 -- produce 3 peptides in total
+                        # we remove one of the YOR051C_S33, so it is not given extra weight by motifx
+                        name = gene.split('_')                         # example split gene name YOR051C_S33 
+                        dupName = ('%s\t%s' %(name[0] ,str(extendPep) ))    #  'YOR051C  DEPSRESTPVRSQ'
+                        # check if this pattern has already been seen
+                        if dupName not in self.duplicatePeps:
+                            info['extended'].append(extendPep)
+                            self.duplicatePeps.add(dupName)
+                        else:
+                            with open('Peptides-removed.txt', 'a') as rm:
+                                removed = ('%s\t DUPLICATE PEPTIDE FROM THE SAME GENE' %(dupName))
+                                rm.write('%s\n' %(removed))        
+                            rm.close()                          
                         
     def cleanResult(self):
         """ Remove gene names from self.pepInfo, for genes that have been excluded"""
