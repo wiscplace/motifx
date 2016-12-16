@@ -19,8 +19,6 @@ Motifx.py
         -o Minimum number of times each of your extracted motifs to occur in the data set (10)
         -s P-value threshold for the binomial probability (.000001)
         -u upload your own version of SGD proteome (orf_trans.fasta).
-           
-           newer orf fasta located: /home/GLBRCORG/mplace/scripts/motifx/orf_trans_all.20150113.fasta
         -w Number of total characters in motif, (13)
 
     Output :
